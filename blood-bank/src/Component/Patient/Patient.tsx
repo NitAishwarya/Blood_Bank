@@ -4,7 +4,7 @@ import stylees from "./Patient.module.scss";
 import RadioComp from "../../Module/RadioComp/RadioComp";
 import { Value } from "sass";
 import DropDown from "../../Module/DropdownComp/DropDownComp";
-import ButtonComp from "../../Module/ButtonComp/ButtonComp";
+import CheckBox from "../../Module/CheckBox/CheckBox";
 
 export interface patientType {
   id: string;
@@ -12,13 +12,15 @@ export interface patientType {
   DOB: string;
   gender: string;
   email: string;
-  phone: string;
+  phone: number;
   Add: string;
   occup: string;
   BloodType: string;
   DonateEver: string;
   AnyDiseases: string;
   Anyallergies: string;
+  positive:string;
+  condition:string;
 }
 
 const initialState = {
@@ -27,13 +29,15 @@ const initialState = {
   DOB: "0",
   gender: " ",
   email: "",
-  phone: " ",
+  phone: 0,
   Add: "",
   occup: "",
   BloodType: "",
   DonateEver: "",
   AnyDiseases: "",
   Anyallergies: "",
+  positive:"",
+  condition:""
 };
 
 const reducerFun = (state: patientType, action: any) => {
@@ -71,10 +75,16 @@ const reducerFun = (state: patientType, action: any) => {
     case "setAnyallergies":
       return { ...state, Anyallergies: action.payload.Anyallergies };
 
+      case "setPositive":
+        return { ...state, positive: action.payload.positive };
+
+
+      case "setCondition":
+        return { ...state, condition: action.payload.condition };
+
     default:
       return { ...state };
   }
- 
 };
 
 const Patient = (props: {
@@ -89,6 +99,8 @@ const Patient = (props: {
 
   const opt = ["Yes", "No"];
 
+  const condition = ["I have read the requirements. I am eligible to donate blood"];
+
   const [state, dispatch] = useReducer<(state: any, action: any) => any>(
     reducerFun,
     initialState
@@ -100,10 +112,12 @@ const Patient = (props: {
     }`;
     state.id = id;
     setpatientData([...patientData, state]);
+
+    alert('do you want to submit form');
   };
 
   const ResetFun = () => {
-    const [oldValue , setnewValue] = useState("");
+    const [oldValue, setnewValue] = useState("");
 
     setnewValue(oldValue);
   };
@@ -132,7 +146,7 @@ const Patient = (props: {
     dispatch({ type: "setOccup", payload: { occup: inputValue } });
   };
 
-
+  
 
   return (
     <div className={stylees["wrap"]}>
@@ -157,7 +171,6 @@ const Patient = (props: {
           inputOnChange={changeValue2}
         />
         <br />
-       
         Gender:
         {genderArr.map((value) => {
           return (
@@ -171,19 +184,16 @@ const Patient = (props: {
           );
         })}
         <br />
-       <InputComp
+        <InputComp
           placeholder="Email"
-          inputType="text"
+          inputType="email"
           inputValue={state.email}
           inputOnChange={changeValue3}
         />
-        
-       
-
-       <br />
+        <br />
         <InputComp
           placeholder="Phone"
-          inputType="text"
+          inputType="number"
           inputValue={state.phone}
           inputOnChange={changeValue4}
         />
@@ -201,7 +211,6 @@ const Patient = (props: {
           inputValue={state.occup}
           inputOnChange={changeValue6}
         />
-      
         <br />
         Blood Type :
         {BloodGroupArr.map((value) => {
@@ -269,20 +278,66 @@ const Patient = (props: {
             />
           );
         })}
-     
-      <br />
-       </div>
+
+
+        <br />
+
+        Have you ever had positive Blood test for HbsAg, Hcv, HIV?
+        {opt.map((value) => {
+          return (
+            <RadioComp
+              name="HIVPositive"
+              value={value}
+              setRadio={(inputValue: string) =>
+                dispatch({
+                  type: "setPositive",
+                  payload: { positive: inputValue },
+                })
+              }
+            />
+          );
+        })}
+
+
+        <hr />
+        <div>
+          <span style={{ color: "blue" }}> Consent & Signature </span>
+        </div>
+        <br />
+        <span className={stylees["sec"]}>
+          {" "}
+          I want to donate blood voluntarily and will not be entitled to claim
+          any exchange for my donation. I guarantee that all the provided
+          information is true. I understand the questions, which are for my
+          protection as well as to protect the receipient of my blood.{" "}
+        
+<br />
+<br />
+        {condition.map((value) => {
+          return (
+            <CheckBox
+              name="condition"
+              value={value}
+              setCheck={(inputValue: string) =>
+                dispatch({ type: "setCondition", payload: { condition: inputValue } })
+              }
+            />
+          );
+        })}
+
+</span>
+
+      </div>
       <div style={{ textAlign: "center" }}>
-        <button className={stylees["button"]} onClick={submitForm}>
+        <button  className={stylees["button"]} onClick={submitForm}> 
           {" "}
           Submit{" "}
+
+          
         </button>
-      
-      
       </div>
     </div>
   );
 };
-
 
 export default Patient;
