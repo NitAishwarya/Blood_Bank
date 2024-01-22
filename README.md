@@ -49,7 +49,7 @@ Blood Donation Form is a web application designed to simplify the process of enr
 ## Blood Donation Form img:- 
 ![PC1](https://i.ibb.co/vkyfcT1/Web-capture-22-1-2024-154324-localhost.jpg)
 
-## Blood Donar's img:-
+## Donar Data Table img:-
 ![PC2](https://i.ibb.co/THYnPSb/table.png)
 
 
