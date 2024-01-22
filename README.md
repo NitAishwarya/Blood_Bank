@@ -31,8 +31,8 @@ Blood Donation Form is a web application designed to simplify the process of enr
 
 ## Donar's Data Table 
 
-[!TIP]
-Donar's data content the same rows followed by form with addition of one extra Action button which allows to delete the donar's information if want.
+> [!TIP]
+> Donar's data content the same rows followed by form with addition of one extra Action button which allows to delete the donar's information if want.
 
 
 ## Technologies Used
