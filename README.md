@@ -53,6 +53,5 @@ Blood Donation Form is a web application designed to simplify the process of enr
 
 
 
-
-                                                                                       # THANK YOU
-                                                                                        :pray:
+**THANK YOU**
+:pray:
