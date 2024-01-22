@@ -3,6 +3,10 @@ Blood donation is a practice of donating healthy blood to people in need. People
 
 
 # Technologies uses
+- HTML
+- CSS
+- JavaScript
+- React
 
 
 
