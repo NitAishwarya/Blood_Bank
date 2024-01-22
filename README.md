@@ -2,6 +2,9 @@
 Blood donation is a practice of donating healthy blood to people in need. People also tend to store blood in blood banks for future use. It is a sign of humanity which helps in uniting people of different religion, caste, and creed.
 
 
+# Technologies uses
+
+
 
 
 
